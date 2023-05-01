@@ -1,57 +1,76 @@
 package org.wikipedia.fintechuitest.espresso.screens
 
 import android.text.method.PasswordTransformationMethod
-import android.view.View
 import android.widget.EditText
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
-import com.google.android.material.textfield.TextInputLayout
 import org.hamcrest.Matchers.allOf
-import org.hamcrest.Matchers.containsString
 import org.wikipedia.R
-import org.wikipedia.views.PlainPasteEditText
+import org.wikipedia.fintechuitest.espresso.matchers.HintColorMatcher
 
 class WikiAccountScreen {
-    private val fieldInputUsername = allOf(
+    private val fieldInputUsernameMatcher = allOf(
         isDescendantOfA(withId(R.id.create_account_username)),
         isAssignableFrom(EditText::class.java)
     )
-    private val fieldInputPassword = allOf(
+    private val fieldInputPasswordMatcher = allOf(
         isDescendantOfA(withId(R.id.create_account_password_input)),
         isAssignableFrom(EditText::class.java)
     )
-    private val buttonEye = allOf(
+    private val buttonEyeMatcher = allOf(
         withId(com.google.android.material.R.id.text_input_end_icon),
         isDescendantOfA(withId(R.id.create_account_password_input))
     )
+    private val buttonNextMatcher = withId(R.id.create_account_submit_button)
+    private val colorErrorMessage = R.color.red500
 
     fun inputUsername(username : String) {
-        onView(fieldInputUsername)
+        onView(fieldInputUsernameMatcher)
+            .perform(click())
             .perform(typeText(username))
+            .perform(closeSoftKeyboard())
     }
 
     fun inputPassword(password : String) {
-        onView(fieldInputPassword)
+        onView(fieldInputPasswordMatcher)
             .perform(click())
             .perform(typeText(password))
             .perform(closeSoftKeyboard())
     }
 
     fun clickEyeButton() {
-        onView(buttonEye)
+        onView(buttonEyeMatcher)
             .perform(click())
     }
 
     fun checkVisiblePassword(password: String) {
-        onView(fieldInputPassword)
+        onView(fieldInputPasswordMatcher)
             .check(matches(withText(password)))
     }
 
     fun checkHiddenPassword(password: String) {
-        onView(fieldInputPassword)
+        onView(fieldInputPasswordMatcher)
             .check(matches(withText(PasswordTransformationMethod.getInstance().getTransformation(password, null).toString())))
+    }
+
+    fun clickNextButton() {
+        onView(buttonNextMatcher)
+            .perform(click())
+    }
+
+    fun checkRedTitle(errorHintId: Int) {
+        onView(fieldInputPasswordMatcher)
+            .check(matches(HintColorMatcher(errorHintId)))
+    }
+
+    fun checkRedExceptionMessage() {
+        onView(withText(R.string.create_account_password_error))
+            .check(matches(allOf(
+                isDisplayed(),
+                hasTextColor(colorErrorMessage)
+            )))
     }
 
     companion object {

@@ -6,10 +6,10 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import org.wikipedia.R
 
 class FirstGreetingScreen {
-    private val buttonSkip = withId(R.id.fragment_onboarding_skip_button)
+    private val buttonSkipMatcher = withId(R.id.fragment_onboarding_skip_button)
 
     fun clickSkipButton(){
-        onView(buttonSkip)
+        onView(buttonSkipMatcher)
             .perform(click())
     }
 

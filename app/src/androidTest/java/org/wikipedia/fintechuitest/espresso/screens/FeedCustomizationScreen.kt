@@ -1,12 +1,10 @@
 package org.wikipedia.fintechuitest.espresso.screens
 
-import androidx.appcompat.widget.SwitchCompat
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.swipeUp
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import org.hamcrest.Matchers.allOf
-import org.hamcrest.Matchers.instanceOf
 import org.wikipedia.R
 
 class FeedCustomizationScreen {
@@ -42,7 +40,6 @@ class FeedCustomizationScreen {
         hasSibling(withChild(withText(R.string.view_main_page_card_title))),
         withId(R.id.feed_content_type_checkbox)
     )
-
     private val contentRecycler = withId(R.id.content_types_recycler)
 
     fun checkFirstCheckbox() {

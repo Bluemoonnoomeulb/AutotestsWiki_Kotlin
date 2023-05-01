@@ -6,22 +6,22 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import org.wikipedia.R
 
 class ExploreScreen {
-    private val buttonNavMore = withId(R.id.nav_more_container)
-    private val buttonOpenSettings = withId(R.id.main_drawer_settings_container)
-    private val buttonLogIn = withId(R.id.main_drawer_account_container)
+    private val buttonNavMoreMatcher = withId(R.id.nav_more_container)
+    private val buttonOpenSettingsMatchers = withId(R.id.main_drawer_settings_container)
+    private val buttonLogInMatchers = withId(R.id.main_drawer_account_container)
 
     fun clickNavMoreButton() {
-        onView(buttonNavMore)
+        onView(buttonNavMoreMatcher)
             .perform(click())
     }
 
     fun clickSettingsButton() {
-        onView(buttonOpenSettings)
+        onView(buttonOpenSettingsMatchers)
             .perform(click())
     }
 
     fun clickLogInButton() {
-        onView(buttonLogIn)
+        onView(buttonLogInMatchers)
             .perform(click())
     }
 

@@ -76,13 +76,33 @@ class AllSortsOfTests {
             clickNavMoreButton()
             clickLogInButton()
         }
+
+        val password = "qwerty12345"
+
         WikiAccountScreen {
-            val temp = "12345"
-            inputPassword(temp)
+            inputPassword(password)
             clickEyeButton()
-            checkVisiblePassword(temp)
+            checkVisiblePassword(password)
             clickEyeButton()
-            checkHiddenPassword(temp)
+            checkHiddenPassword(password)
+        }
+    }
+
+    @Test
+    fun passwordValidationTest() {
+        ExploreScreen {
+            clickNavMoreButton()
+            clickLogInButton()
+        }
+
+        val username = "MaksimTinkoff"
+        val password = "2002"
+
+        WikiAccountScreen {
+            inputUsername(username)
+            inputPassword(password)
+            clickNextButton()
+            checkRedExceptionMessage()
         }
     }
 }
