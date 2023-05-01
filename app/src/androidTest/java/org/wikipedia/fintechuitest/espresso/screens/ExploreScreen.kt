@@ -8,6 +8,7 @@ import org.wikipedia.R
 class ExploreScreen {
     private val buttonNavMore = withId(R.id.nav_more_container)
     private val buttonOpenSettings = withId(R.id.main_drawer_settings_container)
+    private val buttonLogIn = withId(R.id.main_drawer_account_container)
 
     fun clickNavMoreButton() {
         onView(buttonNavMore)
@@ -16,6 +17,11 @@ class ExploreScreen {
 
     fun clickSettingsButton() {
         onView(buttonOpenSettings)
+            .perform(click())
+    }
+
+    fun clickLogInButton() {
+        onView(buttonLogIn)
             .perform(click())
     }
 

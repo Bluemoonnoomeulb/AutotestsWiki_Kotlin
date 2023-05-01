@@ -5,15 +5,11 @@ import android.content.Intent
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.matcher.IntentMatchers
-import androidx.test.espresso.intent.matcher.UriMatchers.hasHost
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
-import org.hamcrest.Matchers
 import org.hamcrest.Matchers.allOf
-import org.hamcrest.Matchers.equalTo
 import org.wikipedia.R
 
 class SettingScreen {
